@@ -32,6 +32,7 @@ reveals.forEach(r => observer.observe(r));
 
 // CONTACT FORM
 async function sendMessage() {
+  alert("Button working");
   const name = document.getElementById('fname').value.trim();
   const email = document.getElementById('femail').value.trim();
   const subject = document.getElementById('fsubject').value.trim();
@@ -58,7 +59,7 @@ async function sendMessage() {
         message
       })
     });
-    
+
 
     const data = await response.json();
 
