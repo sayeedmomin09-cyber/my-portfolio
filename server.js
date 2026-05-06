@@ -3,9 +3,15 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const app = express();
+const path = require('path');
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '..')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -13,6 +19,7 @@ const transporter = nodemailer.createTransport({
     pass:"fneenmhfdvuhyywv"
   }
 });
+
 
 mongoose.connect("mongodb://portfolioUser:Portfolio123@ac-ni5bh2h-shard-00-00.1rvb4fe.mongodb.net:27017,ac-ni5bh2h-shard-00-01.1rvb4fe.mongodb.net:27017,ac-ni5bh2h-shard-00-02.1rvb4fe.mongodb.net:27017/?ssl=true&replicaSet=atlas-nd2q4l-shard-0&authSource=admin&appName=Cluster0")
 .then(() => console.log("MongoDB Connected"))
@@ -27,6 +34,7 @@ const MessageSchema = new mongoose.Schema({
 });
 
 const Message = mongoose.model("Message", MessageSchema);
+
 
 app.post("/contact", async (req, res) => {
   try {
