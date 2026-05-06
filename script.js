@@ -46,7 +46,7 @@ async function sendMessage() {
   }
 
   try {
-    const response = await fetch('http://127.0.0.1:5000/contact', {
+    const response = await fetch('http://my-portfolio-ifxh.onrender.com/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -58,6 +58,7 @@ async function sendMessage() {
         message
       })
     });
+    
 
     const data = await response.json();
 
