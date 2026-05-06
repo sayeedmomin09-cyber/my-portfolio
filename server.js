@@ -3,14 +3,14 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const app = express();
-const path = require('path');
+const path = require("path");
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..index.html'));
+  res.sendFile(path.join(__dirname,"..","index.html"));
 });
 const transporter = nodemailer.createTransport({
   service: "gmail",
