@@ -46,7 +46,7 @@ async function sendMessage() {
   }
 
   try {
-    const response = await fetch('http://my-portfolio-ifxh.onrender.com/contact', {
+    const response = await fetch('https://my-portfolio-ifxh.onrender.com/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
