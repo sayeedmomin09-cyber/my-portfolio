@@ -59,7 +59,7 @@ ${req.body.message}
       `
     };
 
-    await transporter.sendMail(mailOptions);
+    //await transporter.sendMail(mailOptions);
 
     res.json({ message: "Saved and Email Sent Successfully" });
 
