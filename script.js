@@ -32,26 +32,24 @@ reveals.forEach(r => observer.observe(r));
 
 // CONTACT FORM
 async function sendMessage() {
-  alert();
- 
 
-  const status = document.getElementById('form-status');
+const status = document.getElementById('form-status');
 
-  if (!name || !email || !message) {
-    status.style.color = '#ff6b6b';
-    status.textContent = '⚠️ Please fill all required fields.';
-    const name = document.getElementById('fname').value.trim();
+const name = document.getElementById('fname').value.trim();
 
 const email = document.getElementById('femail').value.trim();
 
 const subject = document.getElementById('fsubject').value.trim();
 
 const message = document.getElementById('fmessage').value.trim();
-    return;
-  }
-  
 
-  try {
+if (!name || !email || !message) {
+    status.style.color = '#ff6b6b';
+    status.textContent = '⚠ Please fill all required fields.';
+    return;
+}
+
+try {
     const response = await fetch('https://my-portfolio-ifxh.onrender.com/contact', {
       method: 'POST',
       headers: {
