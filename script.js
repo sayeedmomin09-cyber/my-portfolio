@@ -33,23 +33,6 @@ reveals.forEach(r => observer.observe(r));
 // CONTACT FORM
 async function sendMessage() {
 
-const status = document.getElementById('form-status');
-
-const name = document.getElementById('fname').value.trim();
-
-const email = document.getElementById('femail').value.trim();
-
-const subject = document.getElementById('fsubject').value.trim();
-
-const message = document.getElementById('fmessage').value.trim();
-
-if (!name || !email || !message) {
-    status.style.color = '#ff6b6b';
-    status.textContent = '⚠ Please fill all required fields.';
-    return;
-}
-
-try {
     const response = await fetch('https://my-portfolio-ifxh.onrender.com/contact', {
       method: 'POST',
       headers: {
@@ -64,10 +47,13 @@ try {
     });
 
 
-    const data = await response.json();
-
-    status.style.color = '#00ff99';
-    status.textContent = data.message;
+    if(response.ok){
+   status.style.color = '#00ff99';
+   status.textContent = 'Message sent successfully!';
+} else {
+   status.style.color = 'red';
+   status.textContent = 'Failed to send message';
+}
 
     document.getElementById('fname').value = '';
     document.getElementById('femail').value = '';
