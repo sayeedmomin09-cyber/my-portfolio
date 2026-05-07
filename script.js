@@ -33,37 +33,52 @@ reveals.forEach(r => observer.observe(r));
 // CONTACT FORM
 async function sendMessage() {
 
-    const response = await fetch('https://my-portfolio-ifxh.onrender.com/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        subject,
-        message
-      })
-    });
+    const status = document.getElementById('form-status');
 
+    const name = document.getElementById('fname').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    const subject = document.getElementById('fsubject').value.trim();
+    const message = document.getElementById('fmessage').value.trim();
 
-    if(response.ok){
-   status.style.color = '#00ff99';
-   status.textContent = 'Message sent successfully!';
-} else {
-   status.style.color = 'red';
-   status.textContent = 'Failed to send message';
-}
+    if (!name || !email || !message) {
+        status.style.color = '#ff6b6b';
+        status.textContent = '⚠ Please fill all required fields.';
+        return;
+    }
 
-    document.getElementById('fname').value = '';
-    document.getElementById('femail').value = '';
-    document.getElementById('fsubject').value = '';
-    document.getElementById('fmessage').value = '';
+    try {
 
-  } catch (error) {
-    console.error(error);
+        const response = await fetch('https://my-portfolio-ifxh.onrender.com/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                subject,
+                message
+            })
+        });
 
-    status.style.color = 'red';
-    status.textContent = '❌ Server error.';
-  }
+        if (response.ok) {
+            status.style.color = '#00ff99';
+            status.textContent = 'Message sent successfully!';
+        } else {
+            status.style.color = 'red';
+            status.textContent = 'Failed to send message';
+        }
+
+        document.getElementById('fname').value = '';
+        document.getElementById('femail').value = '';
+        document.getElementById('fsubject').value = '';
+        document.getElementById('fmessage').value = '';
+
+    } catch (error) {
+
+        console.error(error);
+
+        status.style.color = 'red';
+        status.textContent = '❌ Server error.';
+    }
 }
