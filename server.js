@@ -24,7 +24,7 @@ const transporter = nodemailer.createTransport({
 
 
 
-mongoose.connect("mongodb://portfolioUser:Portfolio123@ac-ni5bh2h-shard-00-00.1rvb4fe.mongodb.net:27017,ac-ni5bh2h-shard-00-01.1rvb4fe.mongodb.net:27017,ac-ni5bh2h-shard-00-02.1rvb4fe.mongodb.net:27017/?ssl=true&replicaSet=atlas-nd2q4l-shard-0&authSource=admin&appName=Cluster0")
+mongoose.connect("mongodb+srv://portfolioUser:sayeed2026@cluster0.1rvb4fe.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0")
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log("ERROR:", err));
 
